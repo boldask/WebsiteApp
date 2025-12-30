@@ -19,6 +19,9 @@ class AccountSettingsScreen extends StatefulWidget {
 }
 
 class _AccountSettingsScreenState extends State<AccountSettingsScreen> {
+  // ignore: unused_field
+  bool _isLoading = false;
+
   @override
   Widget build(BuildContext context) {
     return AppScaffold(
