@@ -12,11 +12,9 @@ import 'providers/app_state_provider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  if (kIsWeb) {
-    // THIS IS THE FIX: Explicitly pass your web credentials here
     await Firebase.initializeApp(
       options: const FirebaseOptions(
-        aapiKey: "AIzaSyBWrmfI_fa0wo4uHm2HqUO_geimmPGsP6s",
+        apiKey: "AIzaSyBWrmfI_fa0wo4uHm2HqUO_geimmPGsP6s",
         authDomain: "boldask-150.firebaseapp.com",
         databaseURL: "https://boldask-150-default-rtdb.firebaseio.com",
         projectId: "boldask-150",
@@ -26,10 +24,7 @@ void main() async {
         measurementId: "G-L3HQ7QZR26"
       ),
     );
-  } else {
-    // For Android/iOS, it reads from google-services.json or GoogleService-Info.plist
-    await Firebase.initializeApp();
-  }
+
 
   runApp(
     MultiProvider(
