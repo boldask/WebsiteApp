@@ -69,7 +69,7 @@ class _FollowScreenState extends State<FollowScreen>
 
   Future<void> _loadFollowers() async {
     final userProvider = context.read<UserProvider>();
-    final currentUser = userProvider.user;
+    final currentUser = userProvider.currentUser;
     if (currentUser == null) return;
 
     setState(() {
@@ -102,7 +102,7 @@ class _FollowScreenState extends State<FollowScreen>
 
   Future<void> _loadFollowing() async {
     final userProvider = context.read<UserProvider>();
-    final currentUser = userProvider.user;
+    final currentUser = userProvider.currentUser;
     if (currentUser == null) return;
 
     setState(() {
@@ -172,7 +172,7 @@ class _FollowScreenState extends State<FollowScreen>
   Future<void> _toggleFollow(UserModel targetUser) async {
     final authProvider = context.read<AuthProvider>();
     final userProvider = context.read<UserProvider>();
-    final currentUser = userProvider.user;
+    final currentUser = userProvider.currentUser;
     final currentUserId = authProvider.user?.uid;
 
     if (currentUser == null || currentUserId == null) return;
@@ -202,7 +202,7 @@ class _FollowScreenState extends State<FollowScreen>
       }
 
       // Refresh user data
-      await userProvider.refreshUser();
+      await userProvider.loadUser(userProvider.currentUser!.uid);
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -264,7 +264,7 @@ class _FollowScreenState extends State<FollowScreen>
 
   Widget _buildSearchTab() {
     final userProvider = context.watch<UserProvider>();
-    final currentUser = userProvider.user;
+    final currentUser = userProvider.currentUser;
 
     return Column(
       children: [
@@ -326,7 +326,7 @@ class _FollowScreenState extends State<FollowScreen>
 
   Widget _buildFollowersTab() {
     final userProvider = context.watch<UserProvider>();
-    final currentUser = userProvider.user;
+    final currentUser = userProvider.currentUser;
 
     if (_isLoadingFollowers) {
       return const LoadingIndicator(message: 'Loading followers...');
