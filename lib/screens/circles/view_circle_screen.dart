@@ -426,7 +426,7 @@ class _ViewCircleScreenState extends State<ViewCircleScreen> {
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: theme.colorScheme.surfaceContainerHighest.withOpacity(0.5),
+                color: theme.colorScheme.surfaceVariant.withOpacity(0.5),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Row(
@@ -562,7 +562,7 @@ class _ViewCircleScreenState extends State<ViewCircleScreen> {
       decoration: BoxDecoration(
         color: isPast
             ? theme.colorScheme.error.withOpacity(0.1)
-            : theme.colorScheme.surfaceContainerHighest.withOpacity(0.5),
+            : theme.colorScheme.surfaceVariant.withOpacity(0.5),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
@@ -743,7 +743,7 @@ class _ViewCircleScreenState extends State<ViewCircleScreen> {
           Container(
             padding: const EdgeInsets.all(24),
             decoration: BoxDecoration(
-              color: theme.colorScheme.surfaceContainerHighest.withOpacity(0.5),
+              color: theme.colorScheme.surfaceVariant.withOpacity(0.5),
               borderRadius: BorderRadius.circular(12),
             ),
             child: Center(
