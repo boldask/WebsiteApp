@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:image_picker/image_picker.dart';
-import 'dart:io';
+import 'dart:typed_data';
 import '../../widgets/common/app_scaffold.dart';
 import '../../widgets/common/loading_indicator.dart';
 import '../../widgets/forms/styled_text_field.dart';
@@ -29,7 +29,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
   bool _isLoading = false;
   bool _hasChanges = false;
-  String? _newPhotoPath;
+  Uint8List? _newPhotoBytes;
   String? _currentPhotoUrl;
 
   @override
@@ -57,7 +57,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           _displayNameController.text != user.displayName ||
               _locationController.text != (user.location ?? '');
       setState(() {
-        _hasChanges = hasTextChanges || _newPhotoPath != null;
+        _hasChanges = hasTextChanges || _newPhotoBytes != null;
       });
     }
   }
@@ -197,10 +197,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
     Widget avatarContent;
 
-    if (_newPhotoPath != null) {
+    if (_newPhotoBytes != null) {
       avatarContent = CircleAvatar(
         radius: radius,
-        backgroundImage: FileImage(File(_newPhotoPath!)),
+        backgroundImage: MemoryImage(_newPhotoBytes!),
         backgroundColor: theme.colorScheme.primary.withOpacity(0.1),
       );
     } else if (_currentPhotoUrl != null && _currentPhotoUrl!.isNotEmpty) {
@@ -274,7 +274,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 _pickImage(ImageSource.gallery);
               },
             ),
-            if (_currentPhotoUrl != null || _newPhotoPath != null)
+            if (_currentPhotoUrl != null || _newPhotoBytes != null)
               ListTile(
                 leading: const Icon(Icons.delete, color: BoldaskColors.error),
                 title: const Text(
@@ -284,7 +284,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 onTap: () {
                   Navigator.pop(context);
                   setState(() {
-                    _newPhotoPath = null;
+                    _newPhotoBytes = null;
                     _currentPhotoUrl = null;
                     _hasChanges = true;
                   });
@@ -308,8 +308,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       );
 
       if (pickedFile != null) {
+        final bytes = await pickedFile.readAsBytes();
         setState(() {
-          _newPhotoPath = pickedFile.path;
+          _newPhotoBytes = bytes;
           _hasChanges = true;
         });
       }
@@ -333,12 +334,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       String? photoUrl = _currentPhotoUrl;
 
       // Upload new photo if selected
-      if (_newPhotoPath != null) {
+      if (_newPhotoBytes != null) {
         final authProvider = context.read<AuthProvider>();
         final userId = authProvider.userId!;
-        photoUrl = await _storageService.uploadProfilePhotoFile(
+        photoUrl = await _storageService.uploadProfilePhotoBytes(
           userId,
-          File(_newPhotoPath!),
+          _newPhotoBytes!,
         );
       }
 

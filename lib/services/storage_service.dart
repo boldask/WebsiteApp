@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'dart:typed_data';
 import 'package:firebase_storage/firebase_storage.dart';
 import '../config/constants.dart';
@@ -29,26 +28,18 @@ class StorageService {
     return await snapshot.ref.getDownloadURL();
   }
 
-  /// Upload profile photo from file and return download URL.
-  Future<String> uploadProfilePhotoFile(
+  /// Upload profile photo from bytes (cross-platform compatible).
+  /// Previously used File, now uses bytes for web compatibility.
+  Future<String> uploadProfilePhotoBytes(
     String userId,
-    File file, {
+    Uint8List imageData, {
     String? fileName,
   }) async {
-    final name = fileName ?? '${DateTime.now().millisecondsSinceEpoch}.jpg';
-    final ref = _storage
-        .ref()
-        .child(AppConstants.profilePhotosPath)
-        .child(userId)
-        .child(name);
-
-    final uploadTask = ref.putFile(
-      file,
-      SettableMetadata(contentType: 'image/jpeg'),
+    return uploadProfilePhoto(
+      userId: userId,
+      imageData: imageData,
+      fileName: fileName,
     );
-
-    final snapshot = await uploadTask;
-    return await snapshot.ref.getDownloadURL();
   }
 
   /// Upload content image and return download URL.
