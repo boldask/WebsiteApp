@@ -45,7 +45,3 @@ flutter:
   assets:
     - assets/images/
     - assets/images/backgrounds/
-  fonts:
-    - family: BoldaskIcons
-      fonts:
-        - asset: assets/fonts/BoldaskIcons.ttf
