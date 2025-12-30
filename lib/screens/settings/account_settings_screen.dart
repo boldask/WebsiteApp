@@ -59,7 +59,7 @@ class _AccountSettingsScreenState extends State<AccountSettingsScreen> {
                 _buildDivider(),
                 _buildSettingsTile(
                   context,
-                  icon: Icons.email_outline,
+                  icon: Icons.email_outlined,
                   title: 'Email Preferences',
                   subtitle: 'Manage email notifications',
                   onTap: () => _showComingSoon(context),
