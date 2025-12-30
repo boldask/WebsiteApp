@@ -159,7 +159,7 @@ class _FilterPollScreenState extends State<FilterPollScreen> {
                   Container(
                     padding: const EdgeInsets.all(24),
                     decoration: BoxDecoration(
-                      color: theme.colorScheme.surfaceContainerHighest
+                      color: theme.colorScheme.surfaceVariant
                           .withOpacity(0.5),
                       borderRadius: BorderRadius.circular(12),
                     ),
