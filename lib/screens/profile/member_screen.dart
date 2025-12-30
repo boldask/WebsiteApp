@@ -14,7 +14,6 @@ import '../../services/database_service.dart';
 import '../../models/user_model.dart';
 import '../../models/poll_model.dart';
 import '../../models/circle_model.dart';
-import '../../config/theme.dart';
 import '../../config/routes.dart';
 
 /// Screen for viewing another user's profile.

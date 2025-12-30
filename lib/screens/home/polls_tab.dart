@@ -57,7 +57,6 @@ class _PollsTabState extends State<PollsTab>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    final theme = Theme.of(context);
 
     return Consumer<PollsProvider>(
       builder: (context, pollsProvider, _) {

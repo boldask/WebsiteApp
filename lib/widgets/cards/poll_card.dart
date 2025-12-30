@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import '../../models/poll_model.dart';
-import '../../config/routes.dart';
 import 'package:intl/intl.dart';
 
 /// Reusable poll card widget for displaying poll previews.

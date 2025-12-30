@@ -3,7 +3,6 @@ import 'package:go_router/go_router.dart';
 
 import '../../config/routes.dart';
 import '../../config/theme.dart';
-import '../../widgets/buttons/primary_button.dart';
 
 /// Call to action page to sign up for Boldask.
 class JoinScreen extends StatelessWidget {

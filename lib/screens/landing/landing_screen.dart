@@ -3,7 +3,6 @@ import 'package:go_router/go_router.dart';
 
 import '../../config/routes.dart';
 import '../../config/theme.dart';
-import '../../widgets/buttons/primary_button.dart';
 
 /// Marketing landing page with hero section, features, and CTAs.
 class LandingScreen extends StatelessWidget {

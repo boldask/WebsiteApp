@@ -7,8 +7,6 @@ import '../../widgets/cards/poll_card.dart';
 import '../../widgets/cards/circle_card.dart';
 import '../../widgets/common/loading_indicator.dart';
 import '../../widgets/common/empty_state.dart';
-import '../../models/poll_model.dart';
-import '../../models/circle_model.dart';
 
 /// Favorites tab showing saved polls and circles.
 class FavoritesTab extends StatefulWidget {

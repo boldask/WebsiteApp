@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import '../../providers/polls_provider.dart';
 import '../../widgets/forms/tag_selector.dart';
 import '../../widgets/buttons/primary_button.dart';
-import '../../config/constants.dart';
 
 /// Screen for filtering polls by category and tags.
 class FilterPollScreen extends StatefulWidget {

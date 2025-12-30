@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import '../../widgets/common/app_scaffold.dart';
-import '../../widgets/common/loading_indicator.dart';
 import '../../widgets/buttons/primary_button.dart';
 import '../../providers/auth_provider.dart';
 import '../../providers/user_provider.dart';
@@ -20,12 +19,8 @@ class AccountSettingsScreen extends StatefulWidget {
 }
 
 class _AccountSettingsScreenState extends State<AccountSettingsScreen> {
-  bool _isLoading = false;
-
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return AppScaffold(
       title: 'Settings',
       showBackButton: true,
@@ -307,8 +302,6 @@ class _AccountSettingsScreenState extends State<AccountSettingsScreen> {
   }
 
   void _showChangePasswordDialog() {
-    final theme = Theme.of(context);
-
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
